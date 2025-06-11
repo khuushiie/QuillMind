@@ -7,14 +7,22 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Env files
 .env
 .env.local
+/frontend/.env
+/backend/.env
+
+# Build and Dependencies
 node_modules
 dist
 dist-ssr
-*.local
+/frontend/node_modules/
+/frontend/dist/
+/backend/node_modules/
 
-# Editor directories and files
+# Local config
+*.local
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -24,12 +32,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# Frontend
-/frontend/node_modules/
-/frontend/dist/
-/frontend/.env
-
-# Backend
-/backend/node_modules/
-/backend/.env
