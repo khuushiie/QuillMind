@@ -16,14 +16,22 @@ const Button = ({ label, icon, onClick }) => (
 
 export default function Editor() {
   const [aiResponse, setAiResponse] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const editor = useEditor({
     extensions: [StarterKit],
     content: "<p>Start writing something amazing...</p>",
   });
 
   const handleFeatureClick = (feature) => {
-    setAiResponse(`🔧 ${feature} feature is under development.`);
-    // Later: call backend with editor.getHTML() or editor.getText()
+    setLoading(true);
+    setAiResponse("");
+
+    // Simulate AI processing
+    setTimeout(() => {
+      setLoading(false);
+      setAiResponse(`✅ This is a simulated response for the "${feature}" feature. Final integration coming soon.`);
+    }, 1500);
   };
 
   return (
@@ -52,11 +60,27 @@ export default function Editor() {
           <Button label="ELI5" icon="🧠" onClick={() => handleFeatureClick("ELI5")} />
         </div>
 
-        {aiResponse && (
-          <div className="bg-indigo-50 border border-indigo-200 text-indigo-800 p-4 rounded-xl shadow-inner">
+        {loading && (
+          <div className="flex items-center justify-center mb-6">
+            <motion.div
+              className="w-8 h-8 border-4 border-indigo-400 border-t-transparent rounded-full animate-spin"
+              initial={{ rotate: 0 }}
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+            ></motion.div>
+          </div>
+        )}
+
+        {!loading && aiResponse && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="bg-indigo-50 border border-indigo-200 text-indigo-800 p-4 rounded-xl shadow-inner"
+          >
             <h2 className="font-semibold mb-2">AI Output:</h2>
             <p>{aiResponse}</p>
-          </div>
+          </motion.div>
         )}
       </div>
     </motion.div>

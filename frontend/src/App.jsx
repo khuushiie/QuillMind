@@ -8,6 +8,8 @@ import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import NotFound from './pages/NotFound';
+import EditProfile from "./pages/EditProfile";
+import ChangePassword from "./pages/ChangePassword";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/editor/:id?" element={<Editor />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<EditProfile />} />
+        <Route path="/profile" element={<ChangePassword />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 

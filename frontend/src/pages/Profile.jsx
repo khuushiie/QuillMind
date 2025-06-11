@@ -1,46 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
+import EditProfile from './EditProfile';
+import ChangePassword from './ChangePassword';
 import { motion } from 'framer-motion';
 
-export default function Profile() {
+export default function ProfilePage() {
+  const [active, setActive] = useState("edit");
+
   return (
     <motion.div
-      className="min-h-screen bg-gradient-to-br from-[#f1f5f9] via-[#e0e7ff] to-[#fdf2f8] flex items-center justify-center px-4 py-10"
+      className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-6 md:p-10"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.6 }}
     >
-      <motion.div
-        className="relative w-full max-w-2xl p-6 sm:p-10 bg-white/60 backdrop-blur-lg border border-white/30 rounded-3xl shadow-xl"
-        initial={{ y: 30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.6 }}
-      >
-        <div className="relative z-10 flex flex-col items-center space-y-6">
-          <img
-            src="https://api.dicebear.com/7.x/notionists/svg?seed=quillmind"
-            alt="User Avatar"
-            className="w-28 h-28 rounded-full border-4 border-white shadow-md hover:scale-105 transition-transform duration-300"
-          />
-
-          <h2 className="text-3xl font-bold text-gray-800">Khushi Moon</h2>
-          <p className="text-gray-500 text-sm">khushi@example.com</p>
-
-          <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-            <button className="py-3 rounded-xl bg-indigo-500 text-white hover:bg-indigo-600 transition duration-200 font-medium shadow-md hover:scale-105">
+      <div className="max-w-5xl mx-auto bg-white shadow-xl rounded-3xl p-8 md:p-12">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-10">
+          <div className="flex items-center gap-4">
+            {/* <img
+              src="https://i.pravatar.cc/100?img=5"
+              alt="profile"
+              className="w-20 h-20 rounded-full shadow-lg border-4 border-indigo-200"
+            /> */}
+            <div>
+              <h2 className="text-2xl font-semibold text-indigo-700">Khushi Moon</h2>
+              <p className="text-gray-500">khushi@example.com</p>
+            </div>
+          </div>
+          <div className="flex gap-4">
+            <button
+              onClick={() => setActive("edit")}
+              className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                active === "edit"
+                  ? "bg-indigo-600 text-white shadow-md"
+                  : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+              }`}
+            >
               Edit Profile
             </button>
-            <button className="py-3 rounded-xl bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 transition duration-200 font-medium shadow-sm hover:scale-105">
+            <button
+              onClick={() => setActive("password")}
+              className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+                active === "password"
+                  ? "bg-indigo-600 text-white shadow-md"
+                  : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+              }`}
+            >
               Change Password
-            </button>
-            <button className="col-span-1 sm:col-span-2 py-3 rounded-xl bg-red-500 text-white hover:bg-red-600 transition duration-200 font-medium shadow-md hover:scale-105">
-              Logout
             </button>
           </div>
         </div>
-      </motion.div>
+
+        <motion.div
+          key={active}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          {active === "edit" && <EditProfile />}
+          {active === "password" && <ChangePassword />}
+        </motion.div>
+      </div>
     </motion.div>
   );
 }
+
+
 
 
 
