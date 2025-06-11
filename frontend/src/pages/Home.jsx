@@ -3,48 +3,50 @@ import "../styles/Home.css";
 
 export default function Home() {
   return (
-    <div className="home-wrapper bg-gradient-to-r from-purple-100 via-indigo-100 to-blue-100 min-h-screen">
+    <div className="home-wrapper bg-gradient-to-r from-purple-100 via-indigo-100 to-blue-100 min-h-screen flex flex-col items-center justify-center">
       {/* Hero Section */}
-      <section className="hero-section text-center py-20 px-4">
-        <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-6">
-          Welcome to <span className="text-indigo-500">QuillMind</span>
+      <section className="text-center px-4 py-20 md:py-28">
+        <h1 className="text-5xl md:text-7xl font-extrabold text-gray-800 mb-6 leading-tight">
+          Discover <span className="text-indigo-500">QuillMind</span>
         </h1>
-        <p className="text-lg md:text-xl text-slate-700 max-w-2xl mx-auto mb-8">
-          Your AI-powered writing assistant designed to enhance creativity, productivity, and clarity.
+        <p className="text-xl md:text-2xl text-slate-700 max-w-2xl mx-auto mb-8">
+          AI tools that simplify your writing, generate ideas, and elevate your creativity.
         </p>
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-center gap-6 flex-wrap">
           <Link
             to="/editor"
-            className="px-6 py-3 rounded-full text-white font-semibold bg-gradient-to-r from-indigo-400 to-purple-400 hover:from-indigo-500 transition-transform transform hover:scale-105"
+            className="px-8 py-3 rounded-full text-white font-semibold bg-gradient-to-r from-indigo-400 to-purple-400 hover:from-indigo-500 transform hover:scale-105 transition"
           >
-            Start Writing
+            Try the Editor
           </Link>
           <Link
             to="/register"
-            className="px-6 py-3 rounded-full text-indigo-500 bg-white shadow hover:text-indigo-600 transition-transform transform hover:scale-105"
+            className="px-8 py-3 rounded-full text-indigo-500 bg-white shadow hover:text-indigo-600 transform hover:scale-105 transition"
           >
-            Join Now
+            Create Account
           </Link>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="features-section py-16 px-4 max-w-7xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
-          What QuillMind Offers
+      {/* Features Preview */}
+      <section className="w-full py-16 px-4 max-w-7xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-12">
+          Tools You’ll Love
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="bg-white/70 backdrop-blur p-6 rounded-xl shadow hover:shadow-lg transition-shadow"
+              className="bg-white/70 backdrop-blur p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow transform hover:scale-105"
             >
-              <div className="text-4xl mb-4 text-indigo-500">{feature.icon}</div>
+              <div className="text-5xl mb-4 text-indigo-500">{feature.icon}</div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">
                 {feature.title}
               </h3>
-              <p className="text-slate-700 text-sm">{feature.description}</p>
+              <p className="text-slate-700 text-sm leading-relaxed">
+                {feature.description}
+              </p>
             </div>
           ))}
         </div>
@@ -56,34 +58,35 @@ export default function Home() {
 const features = [
   {
     icon: "\u270E\uFE0F",
-    title: "Grammar Correction",
-    description: "Fix spelling, punctuation, and grammar mistakes instantly."
+    title: "Fix Grammar",
+    description: "Instantly correct spelling, punctuation, and grammatical issues."
   },
   {
     icon: "\uD83D\uDD04",
-    title: "Text Rewriting",
-    description: "Rephrase sentences with different tones and styles."
+    title: "Rewrite Smarter",
+    description: "Easily rephrase text to sound formal, simple, or more creative."
   },
   {
     icon: "\uD83D\uDCDD",
-    title: "Content Generation",
-    description: "Get help generating content based on your inputs."
+    title: "Generate Ideas",
+    description: "Use AI to generate blog titles, outlines, and story hooks."
   },
   {
     icon: "\uD83D\uDCC8",
-    title: "Summarization",
-    description: "Summarize long content into digestible formats."
+    title: "Summarize Content",
+    description: "Turn lengthy text into concise summaries or bullet points."
   },
   {
     icon: "\uD83D\uDCAC",
-    title: "Tone Adjustment",
-    description: "Easily change the tone to match your audience."
+    title: "Adjust Tone",
+    description: "Make your writing friendly, persuasive, or academic."
   },
   {
     icon: "\uD83C\uDF1F",
-    title: "Idea Generator",
-    description: "Get creative ideas for blogs, scripts, essays and more."
+    title: "Explain Simply",
+    description: "Break down complex information with our ELI5 feature."
   }
 ];
+
 
 

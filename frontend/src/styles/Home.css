@@ -1,12 +1,25 @@
+/* Home.css */
+
 .home-wrapper {
-  scroll-behavior: smooth;
+  font-family: 'Inter', sans-serif;
 }
 
 .hero-section h1 span {
-  text-shadow: 1px 1px 2px rgba(79, 70, 229, 0.2); /* subtle indigo shadow */
+  background: linear-gradient(to right, #6366f1, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.features-section .hover\\:shadow-lg:hover {
-  transform: scale(1.03);
-  transition: all 0.3s ease;
+.hero-section p {
+  line-height: 1.7;
 }
+
+.features-section .card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.features-section .card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+}
+
