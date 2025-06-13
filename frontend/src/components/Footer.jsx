@@ -6,9 +6,8 @@ const Footer = () => {
     <footer className="footer">
       <p>© {new Date().getFullYear()} QuillMind. All rights reserved.</p>
       <p>Designed with 💜 in India.</p>
-      </footer>
+    </footer>
   );
 };
 
 export default Footer;
-
