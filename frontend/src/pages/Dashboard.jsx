@@ -29,18 +29,18 @@ export default function Dashboard() {
             {
               title: '📝 My Documents',
               desc: 'View and manage your saved writings and drafts.',
-              path: '/history',
+              path: '/my-documents',
             },
-            {
-              title: '📊 Analytics',
-              desc: 'Track your writing performance and progress over time.',
-              path: '/analytics',
-            },
-            {
-              title: '💬 Feedback',
-              desc: 'Give feedback or request new features.',
-              path: '/feedback',
-            },
+            // {
+            //   title: '📊 Analytics',
+            //   desc: 'Track your writing performance and progress over time.',
+            //   path: '/analytics',
+            // },
+            // {
+            //   title: '💬 Feedback',
+            //   desc: 'Give feedback or request new features.',
+            //   path: '/feedback',
+            // },
           ].map((card, index) => (
             <Link
               to={card.path}

@@ -36,7 +36,8 @@ export default function Home() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {features.map((feature) => (
-            <div
+            <Link
+              to="/editor"
               key={feature.title}
               className="bg-white/70 backdrop-blur p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow transform hover:scale-105"
             >
@@ -47,10 +48,11 @@ export default function Home() {
               <p className="text-slate-700 text-sm leading-relaxed">
                 {feature.description}
               </p>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
+
     </div>
   );
 }
