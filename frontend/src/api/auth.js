@@ -4,6 +4,9 @@ const API_URL = import.meta.env.VITE_APP_API_URL;
 
 const API = axios.create({
   baseURL: `${API_URL}`, // your backend server URL
+
+const API = axios.create({
+  baseURL: "http://localhost:5000/api", 
 });
 
 // Register function - sends correct fields as backend expects

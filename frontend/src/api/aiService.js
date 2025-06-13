@@ -4,6 +4,10 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 export const fetchAIResponse = async (feature, text) => {
   try {
     const res = await axios.post(`${API}/ai`, {
+
+export const fetchAIResponse = async (feature, text) => {
+  try {
+    const res = await axios.post("http://localhost:5000/api/ai", {
       feature,
       text,
     });
