@@ -43,6 +43,7 @@ export default function Editor() {
 
       try {
         const res = await axios.get(`${API}/documents/${id}`, {
+        const res = await axios.get(`http://localhost:5000/api/documents/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -181,6 +182,12 @@ export default function Editor() {
                 setMessage("✅ Document updated!");
               } else {
                 await axios.post("${API}/api/documents", payload, { headers });
+
+                await axios.put(`http://localhost:5000/api/documents/${id}`, payload, { headers });
+                setMessage("✅ Document updated!");
+              } else {
+                await axios.post("http://localhost:5000/api/documents", payload, { headers });
+
                 setMessage("✅ Document saved!");
               }
             } catch (err) {

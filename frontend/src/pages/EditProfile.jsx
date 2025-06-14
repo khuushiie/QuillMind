@@ -12,6 +12,7 @@ export default function EditProfile() {
     const fetchProfile = async () => {
       try {
         const res = await axios.get(`${API}/auth/profile`, {
+        const res = await axios.get("http://localhost:5000/api/auth/profile", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -33,6 +34,7 @@ export default function EditProfile() {
     try {
       const res = await axios.put(
         `${API}/auth/update`,
+        "http://localhost:5000/api/auth/update",
         { name, email, bio },
         {
           headers: {
