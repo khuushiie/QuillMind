@@ -22,7 +22,10 @@ export const register = async ({ name, email, password, confirmPassword }) => {
 };
 
 export const login = async ({ email, password }) => {
-  const res = await API.post("/auth/login", { email, password });
-  return res.data;
+  try {
+    const res = await API.post("/auth/login", { email, password });
+    return res.data;
+  } catch (err) {
+    throw err;
+  }
 };
-
