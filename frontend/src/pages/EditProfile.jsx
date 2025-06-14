@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const API = import.meta.env.VITE_APP_API_URL;
+
 export default function EditProfile() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -12,7 +14,6 @@ export default function EditProfile() {
     const fetchProfile = async () => {
       try {
         const res = await axios.get(`${API}/auth/profile`, {
-        const res = await axios.get("http://localhost:5000/api/auth/profile", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -22,7 +23,7 @@ export default function EditProfile() {
         setEmail(res.data.email);
         setBio(res.data.bio || "");
       } catch (err) {
-        console.error("Failed to load profile");
+        console.error("Failed to load profile", err);
       }
     };
 
@@ -34,7 +35,6 @@ export default function EditProfile() {
     try {
       const res = await axios.put(
         `${API}/auth/update`,
-        "http://localhost:5000/api/auth/update",
         { name, email, bio },
         {
           headers: {
@@ -47,9 +47,10 @@ export default function EditProfile() {
       localStorage.setItem("user", JSON.stringify({ name, email, bio }));
 
       setTimeout(() => {
-        window.location.reload(); // quick fix to re-render name/email in ProfilePage
+        window.location.reload();
       }, 1000);
     } catch (err) {
+      console.error("Update failed:", err);
       setMessage("❌ Failed to update profile.");
     } finally {
       setLoading(false);
@@ -108,4 +109,5 @@ export default function EditProfile() {
     </div>
   );
 }
+
 
