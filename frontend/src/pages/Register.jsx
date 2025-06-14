@@ -9,7 +9,9 @@ export default function Register() {
     password: "",
     confirmPassword: "",
   });
+
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
 
   const handleChange = (e) =>
@@ -18,9 +20,12 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
 
     const { name, email, password, confirmPassword } = formData;
+
     if (password !== confirmPassword) {
+      setLoading(false);
       return setError("Passwords do not match!");
     }
 
@@ -29,6 +34,8 @@ export default function Register() {
       navigate("/login");
     } catch (err) {
       setError(err.response?.data?.message || "Registration failed!");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -48,6 +55,7 @@ export default function Register() {
             placeholder="Full Name"
             value={formData.name}
             onChange={handleChange}
+            required
             className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
           />
           <input
@@ -56,6 +64,7 @@ export default function Register() {
             placeholder="Email Address"
             value={formData.email}
             onChange={handleChange}
+            required
             className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
           />
           <input
@@ -64,6 +73,7 @@ export default function Register() {
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
+            required
             className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
           />
           <input
@@ -72,13 +82,15 @@ export default function Register() {
             placeholder="Confirm Password"
             value={formData.confirmPassword}
             onChange={handleChange}
+            required
             className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-400"
           />
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold py-3 rounded-xl hover:scale-105 transition-transform duration-300 shadow-lg"
+            disabled={loading}
+            className="w-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold py-3 rounded-xl hover:scale-105 transition-transform duration-300 shadow-lg disabled:opacity-60"
           >
-            🎉 Register Now
+            {loading ? "Registering..." : "🎉 Register Now"}
           </button>
         </form>
 
@@ -92,5 +104,6 @@ export default function Register() {
     </div>
   );
 }
+
 
 
