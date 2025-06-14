@@ -2,20 +2,19 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-const API = import.meta.env.VITE_APP_API_URL;
 
+const API = import.meta.env.VITE_APP_API_URL;
 
 export default function MyDocuments() {
     const [documents, setDocuments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
-    // ✅ Fetch documents
+    // ✅ Fetch documents on mount
     useEffect(() => {
         const fetchDocuments = async () => {
             try {
                 const res = await axios.get(`${API}/documents`, {
-                const res = await axios.get("http://localhost:5000/api/documents", {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },
@@ -31,21 +30,19 @@ export default function MyDocuments() {
         fetchDocuments();
     }, []);
 
-    // ✅ Delete handler
+    // ✅ Delete document
     const handleDelete = async (id) => {
-        const confirm = window.confirm("Are you sure you want to delete this document?");
-        if (!confirm) return;
-        console.log("Trying to delete doc ID:", id);
+        const confirmDelete = window.confirm("Are you sure you want to delete this document?");
+        if (!confirmDelete) return;
 
         try {
             await axios.delete(`${API}/documents/${id}`, {
-            await axios.delete(`http://localhost:5000/api/documents/${id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
             });
 
-            // Remove the deleted document from the state
+            // Remove deleted document from state
             setDocuments((prev) => prev.filter((doc) => doc._id !== id));
         } catch (err) {
             alert("Failed to delete document.");
@@ -101,5 +98,6 @@ export default function MyDocuments() {
         </motion.div>
     );
 }
+
 
 
