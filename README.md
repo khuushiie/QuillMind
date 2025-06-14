@@ -52,5 +52,14 @@
 ### Clone the Repository
 
 ```bash
+# Clone the repository
 git clone https://github.com/khuushiie/QuillMind.git
 cd QuillMind
+
+# Install frontend dependencies
+cd ../frontend
+npm install
+
+# Install backend dependencies
+cd ../backend
+npm install
