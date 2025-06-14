@@ -11,6 +11,7 @@ export default function EditProfile() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
+        const res = await axios.get(`${API}/auth/profile`, {
         const res = await axios.get("http://localhost:5000/api/auth/profile", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -32,6 +33,7 @@ export default function EditProfile() {
     setLoading(true);
     try {
       const res = await axios.put(
+        `${API}/auth/update`,
         "http://localhost:5000/api/auth/update",
         { name, email, bio },
         {

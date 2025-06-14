@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+const API = import.meta.env.VITE_APP_API_URL;
+
 
 export default function MyDocuments() {
     const [documents, setDocuments] = useState([]);
@@ -12,6 +14,7 @@ export default function MyDocuments() {
     useEffect(() => {
         const fetchDocuments = async () => {
             try {
+                const res = await axios.get(`${API}/documents`, {
                 const res = await axios.get("http://localhost:5000/api/documents", {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -35,6 +38,7 @@ export default function MyDocuments() {
         console.log("Trying to delete doc ID:", id);
 
         try {
+            await axios.delete(`${API}/documents/${id}`, {
             await axios.delete(`http://localhost:5000/api/documents/${id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,

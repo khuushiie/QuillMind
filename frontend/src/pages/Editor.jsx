@@ -5,6 +5,7 @@ import axios from "axios";
 import StarterKit from "@tiptap/starter-kit";
 import { motion } from "framer-motion";
 import { fetchAIResponse } from "../api/aiService";
+const API = import.meta.env.VITE_APP_API_URL;
 
 // Reusable button component
 const Button = ({ label, icon, onClick }) => (
@@ -41,6 +42,7 @@ export default function Editor() {
       if (!id) return;
 
       try {
+        const res = await axios.get(`${API}/documents/${id}`, {
         const res = await axios.get(`http://localhost:5000/api/documents/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -176,10 +178,16 @@ export default function Editor() {
               };
 
               if (id) {
+                await axios.put(`${API}/documents/${id}`, payload, { headers });
+                setMessage("✅ Document updated!");
+              } else {
+                await axios.post("${API}/api/documents", payload, { headers });
+
                 await axios.put(`http://localhost:5000/api/documents/${id}`, payload, { headers });
                 setMessage("✅ Document updated!");
               } else {
                 await axios.post("http://localhost:5000/api/documents", payload, { headers });
+
                 setMessage("✅ Document saved!");
               }
             } catch (err) {
